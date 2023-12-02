@@ -1,16 +1,15 @@
 #include<iostream>
 using namespace std;
-int fibo(int n){
+int fib(int n){
     //base case
     if(n==0 or n==1){
         return n;
-        }
-    //recursive case
-    return fibo(n-1) + fibo(n-2);
+    }
+    return fib(n-1)+fib(n-2);
 }
 int main(){
     int n;
     cin>>n;
-    cout<<fibo(n)<<endl;
-return 0;
+    cout<<fib(n);
+    return 0;
 }
