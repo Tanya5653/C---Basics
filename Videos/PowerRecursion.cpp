@@ -2,9 +2,11 @@
 using namespace std;
 //compute a^n
 int Power(int a,int n){
+    //base case
     if(n==0){
         return 1;
     }
+    //recursive case
         return a*Power(a,n-1);
     
 }
