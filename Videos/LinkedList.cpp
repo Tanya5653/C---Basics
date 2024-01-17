@@ -19,7 +19,12 @@ int main(){
         head = head->next;
     }
     cout<<endl;
- 
-    cout<<"the key 8 is present at index:"<<l.search(8)<<endl;
+    int key;
+    cout<<"ENTER KE3Y ELEMENT: ";
+    cin>>key;
+    cout<<"SEARCHING:"<<endl;
+    cout<<"the key is present at index:"<<l.search(key)<<endl;
+    cout<<"RECURSION SEARCHING:"<<endl;
+    cout<<"the key is present at index: "<<l.RecSearch(key)<<endl;
    return 0;
 }

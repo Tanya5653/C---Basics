@@ -73,6 +73,7 @@ class List;
 
 class Node{
     int data;
+
     public:
     Node* next;
     Node(int d):data (d), next(NULL){}
@@ -86,7 +87,23 @@ class List{
     Node* head;
     Node* tail;
 
+    int SearchHelper(Node *start,int key){
+        if(start==NULL){
+            return -1;
+        }
+        if(start->data==key){
+            return 0;
+        }
+        int SubIdx= SearchHelper(start->next,key);
+        if(SubIdx==-1){
+            return -1;
+        }
+        return SubIdx+1;
+    }
+
     public:
+
+
     List():head(NULL),tail(NULL){}
 
     Node* begin(){
@@ -145,5 +162,8 @@ class List{
 		}	
 		return -1;
 	}
-  
+    int RecSearch(int key){
+        int idx = SearchHelper(head,key);
+        return idx;
+    }
 };
