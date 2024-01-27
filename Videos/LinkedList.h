@@ -68,6 +68,8 @@ public:
 */
 
 //again for practise
+#include<iostream>
+using namespace std;
 
 class List;
 
@@ -80,6 +82,12 @@ class Node{
 
     int GetData(){
         return data;
+    }
+    ~Node(){
+        if( next != NULL){
+            delete next;
+        }
+            cout<<"the node deleted with data:"<<data<<endl;
     }
     friend class List;
 };
@@ -148,6 +156,15 @@ class List{
             temp->next = n;
         }
     }
+    void pop_front(){
+        Node * temp=head;
+        head = head->next;
+        temp->next= NULL;
+        delete temp;
+    }
+
+    
+
     int search(int key){
 
 		Node * temp = head;
@@ -165,5 +182,11 @@ class List{
     int RecSearch(int key){
         int idx = SearchHelper(head,key);
         return idx;
+    }
+    ~List(){
+        if(head!=NULL){
+            delete head;
+            head = NULL;
+        }
     }
 };
