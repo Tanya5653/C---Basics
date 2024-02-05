@@ -20,7 +20,6 @@ void Reverse(stack<int> &s){
     s.pop();
     Reverse(s);
     InsertAtBottom(s,t);
-
 }
 int main(){
     stack<int> s;

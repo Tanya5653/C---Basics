@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 //input: 1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
 //preorder output: 1 2 4 5 7 3 6
@@ -33,6 +34,7 @@ void PrintPreorder(Node * root){
     PrintPreorder(root->left);
     PrintPreorder(root->right);
 }
+
 void PrintInorder(Node * root){
     if(root==NULL){
         return;
@@ -41,6 +43,7 @@ void PrintInorder(Node * root){
     cout<<root->data<<" ";
     PrintInorder(root->right);
 }
+
 void PrintPostorder(Node * root){
     if(root== NULL){
         return;
@@ -49,6 +52,43 @@ void PrintPostorder(Node * root){
     PrintPostorder(root->right);
     cout<<root->data<<" ";
 }
+
+void PrintLevelorder(Node * root){
+    queue<Node*> q;
+    q.push(root);
+    q.push(NULL);
+
+    while(!q.empty()){
+        Node * temp = q.front();
+        if(temp==NULL){
+            cout<<endl;
+            q.pop();
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
+            q.pop();
+            cout<<temp->data<<" ";
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+        }
+    }
+    return;
+}
+
+int height(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+    int h1= height(root->left);
+    int h2= height(root->right);
+    return 1+ max(h1,h2);
+}
 int main(){
     Node * root = BuildTree();
     PrintPreorder(root);
@@ -56,5 +96,9 @@ int main(){
     PrintInorder(root);
     cout<<endl;
     PrintPostorder(root);
+    cout<<endl<<"LEVEL ORDER:"<<endl;
+    PrintLevelorder(root);
+    cout<<endl;
+    cout<<height(root);
     return 0;
 }
