@@ -12,7 +12,8 @@ class Node{
     
     Node(int d){
         data=d;
-        left= right= NULL;
+        left=NULL;
+        right=NULL;
     }
 };
 Node* BuildTree(){
@@ -81,6 +82,34 @@ void PrintLevelorder(Node * root){
     return;
 }
 
+Node* LevelOrder(){
+    int d;
+    cin>>d;
+
+    Node* root = new Node(d);
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        Node* current = q.front();
+        q.pop();
+        
+        int c1,c2;
+        cin>>c1>>c2;
+
+        if(c1!=-1){
+        current->left = new Node(c1);
+        q.push(current->left);
+        }
+        if(c2!=-1){
+        current->right = new Node(c2);
+        q.push(current->right);
+        }
+    }
+    return root;
+}
+
 int height(Node* root){
     if(root==NULL){
         return 0;
@@ -90,7 +119,7 @@ int height(Node* root){
     return 1+ max(h1,h2);
 }
 int main(){
-    Node * root = BuildTree();
+ /* Node * root = BuildTree();
     PrintPreorder(root);
     cout<<endl;
     PrintInorder(root);
@@ -100,5 +129,9 @@ int main(){
     PrintLevelorder(root);
     cout<<endl;
     cout<<height(root);
-    return 0;
+*/
+
+    Node* root =  LevelOrder();
+    PrintLevelorder(root);
+     return 0;
 }
