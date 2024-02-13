@@ -92,6 +92,22 @@ Node* remove(Node* root,int key){
     }
      return root;
 }
+void printRange(Node* root,int k1,int k2){
+    if(root==NULL){
+        return ;
+    }
+    if(root->key >= k1 and root->key <=k2){
+        printRange(root->left,k1,k2);
+        cout<<root->key<<" ";
+        printRange(root->right,k1,k2);
+    }
+    else if(root->key > k2){
+        printRange(root->left,k1,k2);
+    }
+    else{
+        printRange(root->right,k1,k2);
+    }
+}
 int main(){
     Node* root= NULL;
     int arr[]={8,3,10,1,6,14,4,7,13};
@@ -99,12 +115,16 @@ int main(){
         root= insert(root,x);
     }
     PrintInorder(root);
-    cout<<endl;
-    int key;
-    cout<<"enter key:";
-    cin>>key;
-    root=remove(root,key);
-    PrintInorder(root);
-    //cout<<Search(root,key)<<endl;
+    cout<<endl<<"range contains:";
+   // int key;
+   // cout<<"enter key:";
+   // cin>>key;
+   //root=remove(root,key);
+   //PrintInorder(root);
+   //cout<<Search(root,key)<<endl;
+   int k1,k2;
+   cout<<"enter the rangek1 and k2:";
+   cin>>k1>>k2;
+   printRange(root,k1,k2);
     return 0;
 }
