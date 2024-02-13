@@ -118,6 +118,46 @@ int height(Node* root){
     int h2= height(root->right);
     return 1+ max(h1,h2);
 }
+
+int diameter(Node *root){
+    //basecase
+    if(root==NULL){
+        return 0;
+    }
+    //rec case
+    int D1= height(root->left)+height(root->right);
+    int D2= diameter(root->left);
+    int D3= diameter(root->right);
+
+    return max(D1,max(D2,D3));
+}
+//optimised diameter of order o(n)
+
+class HDPair{
+    public:
+    int height;
+    int diameter;
+};
+
+HDPair optDiameter(Node* root){
+    HDPair p;
+    if(root==NULL){
+        p.height=p.diameter=0;
+        return p;
+    }
+    HDPair left = optDiameter(root->left);
+    HDPair right= optDiameter(root->right);
+    
+    p.height = max(left.height,right.height)+1;
+
+    int D1= left.height + right.height;
+    int D2= left.diameter;
+    int D3=right.diameter;
+
+    p.diameter= max(D1,max(D2,D3));
+    return p;
+}
+
 int main(){
  /* Node * root = BuildTree();
     PrintPreorder(root);
@@ -133,5 +173,7 @@ int main(){
 
     Node* root =  LevelOrder();
     PrintLevelorder(root);
+    cout<<"diameter:"<<diameter(root)<<endl;
+    cout<<"optDiameter"<<optDiameter(root).diameter<<endl;
      return 0;
 }
