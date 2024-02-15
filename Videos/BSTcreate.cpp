@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 class Node{
     public:
@@ -108,6 +109,27 @@ void printRange(Node* root,int k1,int k2){
         printRange(root->right,k1,k2);
     }
 }
+
+void PathRoot2leaf(Node* root,vector<int> path){
+    if(root==NULL){
+        return;
+    }
+    if(root->left==NULL and root->right==NULL){
+        for(int node:path){
+            cout<<node<<"->";
+        }
+        cout<<root->key<<" ";
+        cout<<endl;
+        return;
+    }
+    //reccase
+    path.push_back(root->key);
+    PathRoot2leaf(root->left,path);
+    PathRoot2leaf(root->right,path);
+    //backtrack
+    path.pop_back();
+    return;
+}
 int main(){
     Node* root= NULL;
     int arr[]={8,3,10,1,6,14,4,7,13};
@@ -126,5 +148,9 @@ int main(){
    cout<<"enter the rangek1 and k2:";
    cin>>k1>>k2;
    printRange(root,k1,k2);
+   cout<<endl;
+   vector <int> path;
+   cout<<"root to leaf paths are:"<<endl;
+   PathRoot2leaf(root,path);
     return 0;
 }
