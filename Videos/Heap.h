@@ -15,10 +15,9 @@ class Heap{
         }
         if(min_idx!=i){
             swap(v[i],v[min_idx]);
-            heapify(min_idx);
+            heapify(min_idx);  
         }
     }
-
     public:
     Heap(int default_size=10){
         v.reserve(default_size+1);
