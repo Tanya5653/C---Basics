@@ -89,6 +89,20 @@ void insert(string key,T value){
         ReHash();
     }
 }
+
+T* search(string key){
+    int idx = HashFunc(key);
+    Node<T> * temp = table[idx];
+
+    while(temp!=NULL){
+        if(temp->key==key){
+            return &temp->value;
+        }
+        temp = temp->next;
+    }
+    return NULL;
+}
+
 void print(){
     for(int i=0;i<ts;i++){
         cout<<"Bucket"<<i<<"->";
@@ -106,6 +120,7 @@ void print(){
 /*
 template<typename T>
 class Node{
+    public:
     string key;
     T value;
     Node* next;

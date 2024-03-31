@@ -12,5 +12,16 @@ int main(){
     h.insert("pineapple",240);
     h.insert("apple",280);
     h.print();
+
+    string fruit;
+    cout<<"enter fruit to search:";
+    cin>>fruit;
+    int *price = h.search(fruit);
+    if(price!=NULL){
+        cout<<"the price of fruit is:"<< *price <<endl;
+    }
+    else{
+        cout<<"fruit is not present";
+    }
     return 0;
 }
