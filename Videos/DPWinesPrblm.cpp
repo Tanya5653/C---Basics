@@ -37,6 +37,21 @@ int wines_bottomup(int prices[],int n){
     }
     return dp[0][n-1];
 }
+// int WinesBottomUp(int prices[],int n){
+//     vector<vector<int >> dp(n+1, vector<int> (n+1,0));
+
+//     if(i==j){
+//         dp[i][j]= n*prices[i];
+//     }
+//     else if(i<j){
+//         int y = n-(j-i);
+//         int pick_left = y*prices[i] + dp[i+1][j];
+//         int pick_right = y*prices[j] + dp[i][j-1];
+
+//         dp[i][j] = max(pick_left,pick_right);
+//     }
+//     return dp[0][n-1];
+// }
 int main(){
     int price[]={2,3,5,1,4};
     int n=5;
