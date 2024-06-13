@@ -1,18 +1,19 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 int main()
 {
- int n;
- cin>>n;
- int ans= 0;
- int p=1;
- while(n>0){
-  int lastdigit=n%10;
-  int a= lastdigit*p;
-  ans = ans+a;
-  n=n/10;
-  p=p*2;
- }
-  cout<<ans;
-return 0;
+  int n;
+  cin >> n;
+  int ans = 0;
+  int i = 0;
+  while (n != 0)
+  {
+    int lastdigit = n % 10;
+    ans = ans + (lastdigit * pow(2, i));
+    n = n / 10;
+    i++;
+  }
+  cout << ans;
+  return 0;
 }
