@@ -44,6 +44,9 @@ void insertAtPosition(Node* &head,int position,int d){
     nodeToInsert->next  = temp->next;
     temp->next = nodeToInsert;
 }
+void deleteAtPosition(Node* &head,int posititon){
+   
+}
 int main(){
 //    Node* node1 = new Node(10);
 //    Node* head = node1;
