@@ -44,8 +44,28 @@ void insertAtPosition(Node* &head,int position,int d){
     nodeToInsert->next  = temp->next;
     temp->next = nodeToInsert;
 }
-void deleteAtPosition(Node* &head,int posititon){
-   
+void deleteAtPosition(Node* &head,int position){
+   //deleteat 1st pos
+    if(position==1){
+        Node* temp = head;
+        head = head->next;
+        temp->next=NULL;
+        delete temp;
+    }
+    else{
+        //deleting from middle or last from ll
+        Node* curr=head;
+        Node* prev=NULL;
+        int cnt=1;
+        while(cnt<position){
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+        }
+        prev->next = curr->next;
+        curr->next= NULL;
+        delete curr;
+    }
 }
 int main(){
 //    Node* node1 = new Node(10);
@@ -74,6 +94,8 @@ int main(){
     insertAtHead(head,35);
     print(head);
     insertAtPosition(head,3,40);
+    print(head);
+    deleteAtPosition(head,2);
     print(head);
     return 0;
 }
